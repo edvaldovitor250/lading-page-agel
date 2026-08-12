@@ -116,7 +116,7 @@ const steps = [
 
 const faq = [
   ['Precisa instalar placas na minha casa ou empresa?', 'O modelo apresentado pela AGEL é de energia compartilhada, portanto a proposta não depende da instalação de placas no imóvel do associado.'],
-  ['Existe mensalidade ou taxa de adesão?', 'As condições comerciais e de associação são apresentadas pela equipe AGEL após a análise da unidade consumidora.'],
+  ['Existe mensalidade ou taxa de adesão?', 'Não. A AGEL não cobra nenhum tipo de mensalidade ou taxa de adesão.'],
   ['Por que continuo pagando a concessionária?', 'Parte da conta permanece vinculada à concessionária. O simulador mostra separadamente uma estimativa do residual da RGE e da fatura AGEL.'],
   ['Como é calculado o desconto?', 'A simulação usa o fator do tipo de fornecimento, consumo, valor da fatura e adicional de bandeira. Os detalhes matemáticos podem ser abertos após o cálculo.'],
   ['Funciona para unidade rural?', 'Sim. O simulador gera uma estimativa pela fórmula-base e identifica a unidade como rural. A elegibilidade e as condições finais são confirmadas pela equipe AGEL.'],
@@ -456,14 +456,14 @@ export default function App() {
         <section className="trust-strip" aria-label="Indicadores AGEL">
           <div className="container stats-grid">
             <Stat value={900} suffix="+" label="associados" note="rede em crescimento" icon="people" />
-            <Stat value={5} suffix="+" label="usinas solares" note="geração compartilhada" icon="sun" delay={90} />
+            <Stat value={45} suffix="+" label="usinas solares" note="geração compartilhada" icon="sun" delay={90} />
             <div className="stat-card text-stat" data-reveal="scale" style={{ transitionDelay: '180ms' }}>
               <span className="stat-icon"><Icon name="bolt" size={22} /></span>
-              <strong>Média</strong><span>de desconto distribuído</span><small>mensalmente</small>
+              <strong>+R$ 350 mil</strong><span>em descontos distribuídos</span><small>economia para os associados</small>
             </div>
             <div className="stat-card text-stat" data-reveal="scale" style={{ transitionDelay: '270ms' }}>
               <span className="stat-icon"><Icon name="leaf" size={22} /></span>
-              <strong>Redução</strong><span>de carbono</span><small>energia limpa e renovável</small>
+              <strong>+315 t</strong><span>de CO₂ evitadas</span><small>redução de emissões</small>
             </div>
             <div className="stat-card text-stat" data-reveal="scale" style={{ transitionDelay: '360ms' }}>
               <span className="stat-icon"><Icon name="leaf" size={22} /></span>
@@ -555,9 +555,9 @@ export default function App() {
               <div className="dashboard-head"><span>Impacto AGEL</span><i>Energia que transforma</i></div>
               <div className="dashboard-grid">
                 <div><strong>+900</strong><span>associados</span></div>
-                <div><strong>+40</strong><span>usinas</span></div>
-                <div><strong>CO₂</strong><span>emissões evitadas</span></div>
-                <div><strong>Social</strong><span>compromisso comunitário</span></div>
+                <div><strong>+45</strong><span>usinas</span></div>
+                <div><strong>+315 t</strong><span>de CO₂ evitadas</span></div>
+                <div><strong>+R$ 350 mil</strong><span>em descontos distribuídos</span></div>
               </div>
               <p>Geração renovável, economia compartilhada e compromisso com um futuro de menor impacto ambiental.</p>
             </div>
@@ -569,9 +569,9 @@ export default function App() {
             <div className="generator-card dark-card" data-reveal="left">
               <span className="eyebrow light">Para geradores</span>
               <h2>Tem uma usina solar?</h2>
-              <p>A AGEL também conversa com proprietários de usinas interessados em ampliar o alcance da geração renovável.</p>
+              <p>A AGEL loca sua usina e amplia o alcance da geração renovável.</p>
               <ul className="check-list light-list">
-                <li><Icon name="check" size={18} /> Área para explicar disponibilidade e operação</li>
+                <li><Icon name="check" size={18} /> Pagamento pela performance da usina</li>
                 <li><Icon name="check" size={18} /> Transparência de documentos e faturas</li>
                 <li><Icon name="check" size={18} /> Canal dedicado para análise da usina</li>
               </ul>
@@ -579,8 +579,8 @@ export default function App() {
             </div>
             <div className="generator-card soft-card" data-reveal="right">
               <span className="eyebrow">Área do associado</span>
-              <h2>Comunicação e materiais em um só lugar</h2>
-              <p>Associados recebem orientação sobre documentos, faturas e comunicados para acompanhar sua participação com clareza.</p>
+              <h2>A AGEL cuida da sua conta</h2>
+              <p>Nós nos mantemos atentos a erros da concessionária ou cobranças indevidas, além de orientar sobre documentos, faturas e comunicados.</p>
               <div className="portal-preview">
                 <div><span>Comunicados</span><b>Atualizados</b></div>
                 <div><span>Materiais</span><b>Centralizados</b></div>
@@ -610,7 +610,6 @@ export default function App() {
             <div className="section-heading faq-heading" data-reveal="left">
               <span className="eyebrow">Perguntas frequentes</span>
               <h2>Respostas para as dúvidas que travam a decisão</h2>
-              <p>Uma FAQ completa reduz contato repetitivo e deixa a proposta mais transparente.</p>
               <a className="secondary-button inline-secondary" href="#simulador">Voltar ao simulador</a>
             </div>
             <div className="faq-list">
@@ -684,7 +683,7 @@ export default function App() {
                 <span className="address-icon"><Icon name="building" size={24} /></span>
                 <div>
                   <small>ENDEREÇO</small>
-                  <strong>Avenida Ernesto Pandolfo, 664</strong>
+                  <strong>Rua Ernesto Pandolfo, 664</strong>
                   <span>Centro • Nova Prata – RS • CEP 95320-000</span>
                 </div>
               </div>
@@ -692,14 +691,19 @@ export default function App() {
                 <a href="tel:+555421214007"><span>Telefone</span><strong>(54) 2121-4007</strong></a>
                 <a href="mailto:contato@agel.eco.br"><span>E-mail</span><strong>contato@agel.eco.br</strong></a>
               </div>
-              <a className="primary-button map-button" href="https://www.google.com/maps/search/?api=1&query=AGEL%20Avenida%20Ernesto%20Pandolfo%20664%20Nova%20Prata%20RS" target="_blank" rel="noreferrer">
+              <div className="social-shortcuts" aria-label="Canais digitais da AGEL">
+                <a className="whatsapp-shortcut" href="https://wa.me/555421214007?text=Ol%C3%A1%2C%20quero%20saber%20mais%20sobre%20a%20AGEL." target="_blank" rel="noopener noreferrer"><Icon name="whatsapp" size={20} /><span><small>WhatsApp</small><strong>(54) 2121-4007</strong></span></a>
+                <a href="https://www.instagram.com/agelenergialimpa/" target="_blank" rel="noopener noreferrer" aria-label="Instagram da AGEL"><Icon name="instagram" size={20} /><span><small>Instagram</small><strong>@agelenergialimpa</strong></span></a>
+                <a href="https://www.facebook.com/agelenergialimpa/" target="_blank" rel="noopener noreferrer" aria-label="Facebook da AGEL"><Icon name="facebook" size={20} /><span><small>Facebook</small><strong>@agelenergialimpa</strong></span></a>
+              </div>
+              <a className="primary-button map-button" href="https://www.google.com/maps/search/?api=1&query=AGEL%20Rua%20Ernesto%20Pandolfo%20664%20Nova%20Prata%20RS" target="_blank" rel="noreferrer">
                 Abrir rota no Google Maps <Icon name="arrow" size={19} />
               </a>
             </div>
             <div className="map-card" data-reveal="right">
               <iframe
                 title="Mapa da AGEL em Nova Prata"
-                src="https://www.google.com/maps?q=AGEL%20Avenida%20Ernesto%20Pandolfo%20664%20Nova%20Prata%20RS&output=embed"
+                src="https://www.google.com/maps?q=AGEL%20Rua%20Ernesto%20Pandolfo%20664%20Nova%20Prata%20RS&output=embed"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
                 allowFullScreen
@@ -715,7 +719,7 @@ export default function App() {
             <div data-reveal="left">
               <span className="eyebrow light">Próximo passo</span>
               <h2>Transforme a simulação em uma conversa.</h2>
-              <p>Envie seus dados ou fale diretamente com a equipe pelo telefone (54) 2121-4007.</p>
+              <p>Envie seus dados ou fale diretamente com a equipe pelo telefone ou WhatsApp (54) 2121-4007.</p>
             </div>
             <form className="contact-card" onSubmit={handleContactSubmit} data-reveal="right">
               <div className="contact-field"><label htmlFor="contact-name">Nome</label><input id="contact-name" name="nome" placeholder="Seu nome" required /></div>
@@ -731,7 +735,7 @@ export default function App() {
       <footer className="site-footer">
         <div className="container footer-grid">
           <img src="/assets/agel-logo.png" alt="AGEL" />
-          <p>Associação Gaúcha de Energia Limpa • Av. Ernesto Pandolfo, 664 • Nova Prata – RS.</p>
+          <p>Associação Gaúcha de Energia Limpa • Rua Ernesto Pandolfo, 664 • Nova Prata – RS.</p>
           <div className="footer-links"><a href="#inicio">Início</a><a href="#simulador">Simulador</a><a href="#associe-se">Associe-se</a><a href="#localizacao">Localização</a><a href="#contato">Contato</a></div>
         </div>
       </footer>

@@ -107,7 +107,7 @@ img { max-width: 100%; display: block; }
 .stat-card { min-height: 138px; background: white; border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; box-shadow: var(--shadow-sm); display: grid; align-content: center; grid-template-columns: auto 1fr; grid-template-areas: 'icon value' 'icon label' 'icon note'; column-gap: 14px; transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease; }
 .stat-card:hover { transform: translateY(-7px); border-color: #b8ddd7; box-shadow: 0 18px 38px rgba(0,81,93,.13); }
 .stat-icon { grid-area: icon; width: 44px; height: 44px; border-radius: 12px; background: #edf9f6; color: var(--teal-500); display: grid; place-items: center; align-self: center; }
-.stat-card strong { grid-area: value; font-size: 28px; line-height: 1.1; color: var(--petrol-900); }
+.stat-card strong { grid-area: value; font-size: clamp(21px, 2vw, 28px); line-height: 1.1; color: var(--petrol-900); }
 .stat-card > span:not(.stat-icon) { grid-area: label; font-size: 13px; font-weight: 800; }
 .stat-card small { grid-area: note; color: var(--muted); font-size: 11px; margin-top: 3px; }
 
@@ -344,7 +344,7 @@ img { max-width: 100%; display: block; }
 .dashboard-head i { font-style: normal; color: var(--muted); font-size: 10px; }
 .dashboard-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 10px; margin: 16px 0; }
 .dashboard-grid div { border: 1px solid var(--line); border-radius: 12px; padding: 17px; }
-.dashboard-grid strong { display: block; font-size: 26px; color: var(--petrol-900); }
+.dashboard-grid strong { display: block; font-size: clamp(20px, 2.1vw, 26px); line-height: 1.12; color: var(--petrol-900); }
 .dashboard-grid span { color: var(--muted); font-size: 11px; }
 .impact-dashboard p { color: var(--muted); font-size: 11px; line-height: 1.6; margin-bottom: 0; }
 
@@ -428,6 +428,14 @@ img { max-width: 100%; display: block; }
 .location-contacts span, .location-contacts strong { display: block; }
 .location-contacts span { color: var(--muted); font-size: 10px; }
 .location-contacts strong { color: var(--petrol-800); font-size: 12px; margin-top: 3px; overflow-wrap: anywhere; }
+.social-shortcuts { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-top: 10px; }
+.social-shortcuts a { min-width: 0; min-height: 66px; display: flex; align-items: center; gap: 9px; padding: 12px; border: 1px solid var(--line); border-radius: 12px; background: white; color: var(--petrol-800); transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease; }
+.social-shortcuts a:hover { transform: translateY(-3px); border-color: #a9d6ce; box-shadow: var(--shadow-sm); }
+.social-shortcuts .whatsapp-shortcut { color: #187b4b; border-color: #bde2cc; background: #f1faf5; }
+.social-shortcuts svg { flex: 0 0 auto; }
+.social-shortcuts span, .social-shortcuts small, .social-shortcuts strong { display: block; min-width: 0; }
+.social-shortcuts small { color: var(--muted); font-size: 8px; }
+.social-shortcuts strong { font-size: 9px; margin-top: 2px; overflow-wrap: anywhere; }
 .map-button { margin-top: 20px; }
 .map-card { min-height: 470px; border-radius: 18px; overflow: hidden; border: 1px solid var(--line); box-shadow: var(--shadow-md); position: relative; background: #e8f1ef; }
 .map-card iframe { width: 100%; height: 100%; min-height: 470px; border: 0; display: block; }
@@ -612,6 +620,9 @@ img { max-width: 100%; display: block; }
   .orbit-one { width: 300px; height: 300px; }
   .orbit-two { width: 410px; height: 410px; }
   .location-contacts { grid-template-columns: 1fr; }
+  .social-shortcuts { grid-template-columns: 1fr; }
+  .social-shortcuts a { min-height: 58px; }
+  .social-shortcuts strong { font-size: 11px; }
   .join-card { min-height: 120px; padding: 20px; }
   .map-card, .map-card iframe { min-height: 390px; }
   .contact-field.full, .full-button, .contact-card > small { grid-column: auto; }
