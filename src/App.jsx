@@ -117,7 +117,7 @@ const steps = [
 const faq = [
   ['Precisa instalar placas na minha casa ou empresa?', 'O modelo apresentado pela AGEL é de energia compartilhada, portanto a proposta não depende da instalação de placas no imóvel do associado.'],
   ['Existe mensalidade ou taxa de adesão?', 'Não. A AGEL não cobra nenhum tipo de mensalidade ou taxa de adesão.'],
-  ['Por que continuo pagando a concessionária?', 'Parte da conta permanece vinculada à concessionária. O simulador mostra separadamente uma estimativa do residual da RGE e da fatura AGEL.'],
+  ['Por que continuo pagando a concessionária?', 'A concessionária continua responsável pelo transporte e pela entrega da energia até a sua unidade consumidora. Por isso, a taxa mínima de consumo e os impostos permanecem na fatura da concessionária. Já a cobrança da AGEL corresponde à energia compensada, conforme as condições da associação.'],
   ['Como é calculado o desconto?', 'A simulação usa o fator do tipo de fornecimento, consumo, valor da fatura e adicional de bandeira. Os detalhes matemáticos podem ser abertos após o cálculo.'],
   ['Funciona para unidade rural?', 'Sim. O simulador gera uma estimativa pela fórmula-base e identifica a unidade como rural. A elegibilidade e as condições finais são confirmadas pela equipe AGEL.'],
   ['Posso simular sem informar meus dados pessoais?', 'Sim. O simulador não pede nome, telefone ou e-mail para calcular a estimativa.'],
