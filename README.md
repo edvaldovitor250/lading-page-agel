@@ -37,7 +37,7 @@ A lógica segue exatamente a regra fornecida:
 - `valorResidualRGE = valorFatura - restituicaoBandeira - abatimentoEnergia`
 - `valorFaturaAgel = abatimentoEnergia * 0.80`
 - `descontoTotal = restituicaoBandeira + (abatimentoEnergia * 0.20)`
-- `economiaPercentual = (descontoTotal / valorFatura) * 100`
+- `economiaPercentual = (descontoTotal / (valorFaturaAgel + descontoTotal)) * 100`
 
 ## Unidade rural
 

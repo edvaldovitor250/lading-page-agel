@@ -359,6 +359,7 @@ export default function Simulator() {
               <div>
                 <span className="result-kicker">Sua economia estimada</span>
                 <strong>{formatBRL(result.descontoTotal)} <small>por mês</small></strong>
+                <p>{formatPercent(result.economiaPercentual)} de economia estimada</p>
               </div>
               <div className="result-badge"><Icon name="leaf" size={28} /> Estimativa AGEL</div>
             </div>
@@ -396,6 +397,7 @@ export default function Simulator() {
                 <div><span>Percentual da bandeira</span><strong>{formatPercent(result.percentualBandeira * 100)}</strong></div>
                 <div><span>Restituição da bandeira</span><strong>{formatBRL(result.restituicaoBandeira)}</strong></div>
                 <div><span>Abatimento da energia injetada</span><strong>{formatBRL(result.abatimentoEnergia)}</strong></div>
+                <div><span>Base do percentual (AGEL + desconto)</span><strong>{formatBRL(result.baseEconomiaPercentual)}</strong></div>
               </div>
             )}
 

@@ -104,7 +104,8 @@ export function simulateSavings({
   const valorResidualRGE = valorFatura - restituicaoBandeira - abatimentoEnergia;
   const valorFaturaAgel = abatimentoEnergia * 0.8;
   const descontoTotal = restituicaoBandeira + abatimentoEnergia * 0.2;
-  const economiaPercentual = (descontoTotal / valorFatura) * 100;
+  const baseEconomiaPercentual = valorFaturaAgel + descontoTotal;
+  const economiaPercentual = (descontoTotal / baseEconomiaPercentual) * 100;
 
   const values = [
     percentualBandeira,
@@ -113,6 +114,7 @@ export function simulateSavings({
     valorResidualRGE,
     valorFaturaAgel,
     descontoTotal,
+    baseEconomiaPercentual,
     economiaPercentual,
   ];
 
@@ -142,6 +144,7 @@ export function simulateSavings({
     valorResidualRGE,
     valorFaturaAgel,
     descontoTotal,
+    baseEconomiaPercentual,
     economiaPercentual,
     rural,
   };
