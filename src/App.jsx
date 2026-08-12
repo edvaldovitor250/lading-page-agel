@@ -110,8 +110,8 @@ function ScrollCompanion() {
 const steps = [
   ['sun', '1', 'Usinas da AGEL geram energia', 'A geração solar acontece nas unidades geradoras vinculadas ao modelo.'],
   ['bolt', '2', 'A energia entra na rede', 'A energia produzida é injetada na rede da concessionária.'],
-  ['document', '3', 'Créditos são compensados', 'Os créditos são direcionados conforme a operação e a unidade consumidora.'],
-  ['coins', '4', 'Você visualiza a economia', 'A conta passa a refletir a compensação e a cobrança da AGEL.'],
+  ['document', '3', 'Créditos são compensados', 'Os créditos são direcionados para os associados cadastrados, conforme a operação e a unidade consumidora.'],
+  ['coins', '4', 'Você visualiza a economia', 'No mínimo 20% da economia gerada fica para o associado. Nos períodos com bandeira tarifária, essa economia pode alcançar até 35%.'],
 ];
 
 const faq = [
@@ -175,7 +175,6 @@ const associateLogos = [
   ['associado-22.jpeg', 'Antonelli'],
   ['associado-23.jpg', 'CIC Idiomas'],
   ['associado-24.jpeg', 'Paradiso Restaurante e Cafeteria'],
-  ['associado-25.png', 'Exclusiva'],
 ].map(([file, name]) => ({ src: `/assets/associados/${file}`, name }));
 
 function LogoMarquee({ logos, reverse = false }) {
@@ -210,7 +209,7 @@ function AssociatesShowcase() {
         <LogoMarquee logos={topRow} />
         <LogoMarquee logos={bottomRow} reverse />
       </div>
-      <div className="container associate-note"><Icon name="leaf" size={17} /> <span>25 marcas e instituições conectadas à energia limpa.</span></div>
+      <div className="container associate-note"><Icon name="leaf" size={17} /> <span>24 marcas e instituições conectadas à energia limpa.</span></div>
     </section>
   );
 }
@@ -396,7 +395,7 @@ export default function App() {
             <div className="hero-copy" data-reveal>
               <span className="hero-pill"><Icon name="leaf" size={18} /> Energia limpa sem complicação</span>
               <h1>Economize até <span>35%</span> na sua conta de energia.</h1>
-              <p>Sem instalar placas. Sem investimento inicial. Uma forma simples de transformar geração solar compartilhada em economia mensal.</p>
+              <p>Sem instalar placas. Sem investimento. Uma forma simples de transformar geração solar compartilhada em economia mensal.</p>
               <div className="hero-checks">
                 <span><Icon name="check" size={18} /> Sem instalação no imóvel</span>
                 <span><Icon name="check" size={18} /> Simulação em menos de 1 minuto</span>
@@ -435,14 +434,18 @@ export default function App() {
         <section className="trust-strip" aria-label="Indicadores AGEL">
           <div className="container stats-grid">
             <Stat value={900} suffix="+" label="associados" note="rede em crescimento" icon="people" />
-            <Stat value={40} suffix="+" label="usinas solares" note="geração compartilhada" icon="sun" delay={90} />
+            <Stat value={5} suffix="+" label="usinas solares" note="geração compartilhada" icon="sun" delay={90} />
             <div className="stat-card text-stat" data-reveal="scale" style={{ transitionDelay: '180ms' }}>
               <span className="stat-icon"><Icon name="bolt" size={22} /></span>
-              <strong>Milhões</strong><span>de kWh compensados</span><small>escala de operação</small>
+              <strong>Média</strong><span>de desconto distribuído</span><small>mensalmente</small>
             </div>
             <div className="stat-card text-stat" data-reveal="scale" style={{ transitionDelay: '270ms' }}>
               <span className="stat-icon"><Icon name="leaf" size={22} /></span>
-              <strong>Impacto</strong><span>ambiental e social</span><small>energia que retorna à comunidade</small>
+              <strong>Redução</strong><span>de carbono</span><small>energia limpa e renovável</small>
+            </div>
+            <div className="stat-card text-stat" data-reveal="scale" style={{ transitionDelay: '360ms' }}>
+              <span className="stat-icon"><Icon name="leaf" size={22} /></span>
+              <strong>Árvores</strong><span>cultivadas</span><small>compromisso ambiental</small>
             </div>
           </div>
         </section>
