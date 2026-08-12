@@ -339,6 +339,10 @@ export default function Simulator() {
             <p>Use os dados da sua fatura para estimar o impacto mensal antes de conversar com a equipe.</p>
             <ul className="check-list compact">
               <li><Icon name="check" size={18} /> Sem instalação de placas no imóvel</li>
+              <li className="ownership-benefit">
+                <Icon name="check" size={18} />
+                <span><strong>Sem troca de titularidade</strong><small>Não é necessário fazer qualquer alteração na conta de energia.</small></span>
+              </li>
               <li><Icon name="check" size={18} /> Visualização clara do residual e da AGEL</li>
               <li><Icon name="check" size={18} /> Cálculo sem recarregar a página</li>
               <li><Icon name="check" size={18} /> Leitura automática da conta RGE em PDF</li>
@@ -355,7 +359,6 @@ export default function Simulator() {
               <div>
                 <span className="result-kicker">Sua economia estimada</span>
                 <strong>{formatBRL(result.descontoTotal)} <small>por mês</small></strong>
-                <p>{formatPercent(result.economiaPercentual)} de economia estimada</p>
               </div>
               <div className="result-badge"><Icon name="leaf" size={28} /> Estimativa AGEL</div>
             </div>
