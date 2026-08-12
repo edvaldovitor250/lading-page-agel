@@ -67,7 +67,7 @@ function Header() {
     <header className={`site-header ${progress > 2 ? 'is-scrolled' : ''}`}>
       <div className="container header-inner">
         <a className="brand" href="#inicio" aria-label="AGEL - início">
-          <img src="/assets/agel-logo.png" alt="AGEL - Associação Gaúcha de Energia Limpa" />
+          <img src="/assets/agel-logo-vertical.png" alt="AGEL - Associação Gaúcha de Energia Limpa" />
         </a>
         <button className="mobile-menu-button" type="button" aria-label="Abrir menu" aria-expanded={open} onClick={() => setOpen((v) => !v)}>
           <Icon name={open ? 'close' : 'menu'} size={26} />
@@ -99,9 +99,14 @@ function ScrollCompanion() {
 
   return (
     <aside className={`scroll-companion ${visible ? 'is-visible' : ''}`} aria-label="Atalhos AGEL">
-      <img src="/assets/agel-logo.png" alt="AGEL" />
+      <img className="companion-logo" src="/assets/agel-logo-vertical.png" alt="AGEL" />
       <div><strong>Quer descobrir sua economia?</strong><span>Envie a conta ou preencha os dados.</span></div>
-      <a href="#simulador">Simular agora <Icon name="arrow" size={16} /></a>
+      <div className="companion-actions">
+        <a className="companion-whatsapp" href="https://wa.me/555421214007?text=Ol%C3%A1%2C%20quero%20saber%20mais%20sobre%20a%20AGEL." target="_blank" rel="noopener noreferrer">
+          <Icon name="whatsapp" size={17} /> WhatsApp
+        </a>
+        <a className="companion-simulator" href="#simulador">Simule agora <Icon name="arrow" size={16} /></a>
+      </div>
       <button type="button" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} aria-label="Voltar ao início">↑</button>
     </aside>
   );
@@ -118,9 +123,10 @@ const faq = [
   ['Precisa instalar placas na minha casa ou empresa?', 'O modelo apresentado pela AGEL é de energia compartilhada, portanto a proposta não depende da instalação de placas no imóvel do associado.'],
   ['Existe mensalidade ou taxa de adesão?', 'Não. A AGEL não cobra nenhum tipo de mensalidade ou taxa de adesão.'],
   ['Por que continuo pagando a concessionária?', 'A concessionária continua responsável pelo transporte e pela entrega da energia até a sua unidade consumidora. Por isso, a taxa mínima de consumo e os impostos permanecem na fatura da concessionária. Já a cobrança da AGEL corresponde à energia compensada, conforme as condições da associação.'],
-  ['Como é calculado o desconto?', 'A simulação usa o fator do tipo de fornecimento, consumo, valor da fatura e adicional de bandeira. Os detalhes matemáticos podem ser abertos após o cálculo.'],
   ['Funciona para unidade rural?', 'Sim. O simulador gera uma estimativa pela fórmula-base e identifica a unidade como rural. A elegibilidade e as condições finais são confirmadas pela equipe AGEL.'],
-  ['Posso simular sem informar meus dados pessoais?', 'Sim. O simulador não pede nome, telefone ou e-mail para calcular a estimativa.'],
+  ['A economia será sempre de 35%?', 'O percentual depende das condições da unidade consumidora e da bandeira tarifária do período. O simulador apresenta uma estimativa com os dados da sua conta, e a equipe AGEL confirma as condições antes da associação.'],
+  ['Quem pode se associar à AGEL?', 'Residências, empresas, condomínios e unidades rurais podem solicitar uma análise. A elegibilidade é confirmada individualmente conforme os dados da unidade consumidora.'],
+  ['Como faço para me associar?', 'Na seção “Associe-se agora”, escolha Pessoa Física ou Pessoa Jurídica. O botão abre o documento correspondente para assinatura eletrônica segura pela ZapSign.'],
 ];
 
 const audienceProfiles = [
@@ -305,7 +311,7 @@ function EcoVideoGallery() {
               <span><Icon name="people" size={17} /> Ajude instituições sociais e pessoas com comorbidades</span>
             </div>
           </div>
-          <div className="video-head-brand" data-reveal="right"><img src="/assets/agel-logo.png" alt="AGEL" /><span>Geração limpa • futuro sustentável</span></div>
+          <div className="video-head-brand" data-reveal="right"><img src="/assets/agel-logo-vertical.png" alt="AGEL" /><span>Geração limpa • futuro sustentável</span></div>
         </div>
         <div className="eco-video-grid">
           <EcoVideoCard
@@ -431,8 +437,7 @@ export default function App() {
             </div>
 
             <div className="hero-panel" aria-label="Resumo da proposta AGEL" data-reveal>
-              <div className="panel-brand"><img src="/assets/agel-logo.png" alt="AGEL" /><span>Energia compartilhada</span></div>
-              <span className="hero-panel-label">VISÃO RÁPIDA</span>
+              <div className="panel-brand"><img src="/assets/agel-logo-vertical.png" alt="AGEL" /><span>Energia compartilhada</span></div>
               <div className="hero-savings-number"><small>economia de até</small><strong>35%</strong><span>na conta de energia</span></div>
               <div className="hero-panel-grid">
                 <div><Icon name="sun" size={20} /><span>Energia solar</span></div>
@@ -448,7 +453,7 @@ export default function App() {
         <section className="brand-signature" aria-label="Assinatura AGEL">
           <div className="container brand-signature-inner">
             <span className="signature-label">ENERGIA QUE CONECTA</span>
-            <img src="/assets/agel-logo.png" alt="AGEL — Associação Gaúcha de Energia Limpa" />
+            <img src="/assets/agel-logo-vertical.png" alt="AGEL — Associação Gaúcha de Energia Limpa" />
             <div className="signature-points"><span>Economia</span><i /><span>Sustentabilidade</span><i /><span>Comunidade</span></div>
           </div>
         </section>
@@ -465,10 +470,7 @@ export default function App() {
               <span className="stat-icon"><Icon name="leaf" size={22} /></span>
               <strong>+315 t</strong><span>de CO₂ evitadas</span><small>redução de emissões</small>
             </div>
-            <div className="stat-card text-stat" data-reveal="scale" style={{ transitionDelay: '360ms' }}>
-              <span className="stat-icon"><Icon name="leaf" size={22} /></span>
-              <strong>Árvores</strong><span>cultivadas</span><small>compromisso ambiental</small>
-            </div>
+            <Stat value={31500} label="árvores" note="cultivadas" icon="leaf" delay={360} />
           </div>
         </section>
 
@@ -551,7 +553,7 @@ export default function App() {
               </div>
             </div>
             <div className="impact-dashboard" data-reveal="right">
-              <div className="impact-brand"><img src="/assets/agel-logo.png" alt="AGEL" /></div>
+              <div className="impact-brand"><img src="/assets/agel-logo-vertical.png" alt="AGEL" /></div>
               <div className="dashboard-head"><span>Impacto AGEL</span><i>Energia que transforma</i></div>
               <div className="dashboard-grid">
                 <div><strong>+900</strong><span>associados</span></div>
@@ -734,7 +736,7 @@ export default function App() {
 
       <footer className="site-footer">
         <div className="container footer-grid">
-          <img src="/assets/agel-logo.png" alt="AGEL" />
+          <img src="/assets/agel-logo-vertical.png" alt="AGEL" />
           <p>Associação Gaúcha de Energia Limpa • Rua Ernesto Pandolfo, 664 • Nova Prata – RS.</p>
           <div className="footer-links"><a href="#inicio">Início</a><a href="#simulador">Simulador</a><a href="#associe-se">Associe-se</a><a href="#localizacao">Localização</a><a href="#contato">Contato</a></div>
         </div>

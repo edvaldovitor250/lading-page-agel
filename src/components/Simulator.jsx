@@ -333,7 +333,7 @@ export default function Simulator() {
           </form>
 
           <aside className="simulator-sidecard" data-reveal="right">
-            <div className="sidecard-brand"><img src="/assets/agel-logo.png" alt="AGEL" /></div>
+            <div className="sidecard-brand"><img src="/assets/agel-logo-vertical.png" alt="AGEL" /></div>
             <span className="sidecard-icon"><Icon name="leaf" size={25} /></span>
             <h3>Energia limpa, economia prática</h3>
             <p>Use os dados da sua fatura para estimar o impacto mensal antes de conversar com a equipe.</p>
@@ -406,7 +406,7 @@ export default function Simulator() {
                 <strong>Gostou da estimativa?</strong>
                 <span>Converse com a AGEL para avaliar sua unidade consumidora.</span>
               </div>
-              <a className="primary-button" href="#contato">Quero me associar <Icon name="arrow" size={19} /></a>
+              <a className="primary-button" href="#associe-se">Quero me associar <Icon name="arrow" size={19} /></a>
             </div>
 
             <p className="disclaimer">
