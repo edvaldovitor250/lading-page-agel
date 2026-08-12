@@ -78,6 +78,7 @@ function Header() {
           <a href="#impacto" onClick={() => setOpen(false)}>Impacto</a>
           <a href="#localizacao" onClick={() => setOpen(false)}>Localização</a>
           <a href="#faq" onClick={() => setOpen(false)}>Dúvidas</a>
+          <a href="#associe-se" onClick={() => setOpen(false)}>Associe-se agora</a>
           <a className="nav-cta" href="#contato" onClick={() => setOpen(false)}>Quero economizar</a>
         </nav>
       </div>
@@ -344,7 +345,7 @@ function AudienceTabs() {
         </div>
         <div className="profile-brand-visual" aria-hidden="true">
           <span className="orbit orbit-one" /><span className="orbit orbit-two" />
-          <div className="profile-logo-card"><img src="/assets/agel-logo.png" alt="" /><strong>Energia limpa</strong><span>que gera economia</span></div>
+          <div className="profile-logo-card"><img src="/assets/agel-logo-vertical.png" alt="" /><strong>Energia limpa</strong><span>que gera economia</span></div>
         </div>
       </div>
     </div>
@@ -598,6 +599,56 @@ export default function App() {
           </div>
         </section>
 
+        <section className="section join-section" id="associe-se">
+          <div className="container join-layout">
+            <div className="join-copy" data-reveal="left">
+              <span className="eyebrow"><Icon name="document" size={18} /> Associe-se agora</span>
+              <h2>Escolha o seu tipo de associação</h2>
+              <p>Selecione uma das opções para abrir o documento correspondente na ZapSign e iniciar sua associação à AGEL.</p>
+              <div className="join-security-note">
+                <Icon name="shield" size={20} />
+                <span>Assinatura eletrônica segura pela ZapSign.</span>
+              </div>
+              <div className="join-brand-mark" aria-label="AGEL — Associação Gaúcha de Energia Limpa">
+                <img src="/assets/agel-logo-vertical.png" alt="AGEL — Associação Gaúcha de Energia Limpa" />
+                <span><small>DOCUMENTO OFICIAL</small><strong>Associação AGEL</strong></span>
+              </div>
+            </div>
+            <div className="join-options" data-reveal="right">
+              <a
+                className="join-card"
+                href="https://app.zapsign.com.br/verificar/doc/9fb30ffc-5347-4a0c-b0b9-e36ed7627255"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Associar uma Pessoa Física pela ZapSign (abre em nova aba)"
+              >
+                <span className="join-card-icon"><Icon name="people" size={28} /></span>
+                <span className="join-card-copy">
+                  <small>PARA VOCÊ</small>
+                  <strong>Associe uma Pessoa Física</strong>
+                  <span>Abrir documento de associação</span>
+                </span>
+                <span className="join-card-arrow"><Icon name="arrow" size={22} /></span>
+              </a>
+              <a
+                className="join-card"
+                href="https://app.zapsign.com.br/verificar/doc/79a63261-5079-4fd1-ba20-b4754d89acaa"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Associar uma Pessoa Jurídica pela ZapSign (abre em nova aba)"
+              >
+                <span className="join-card-icon"><Icon name="building" size={28} /></span>
+                <span className="join-card-copy">
+                  <small>PARA SUA EMPRESA</small>
+                  <strong>Associe uma Pessoa Jurídica</strong>
+                  <span>Abrir documento de associação</span>
+                </span>
+                <span className="join-card-arrow"><Icon name="arrow" size={22} /></span>
+              </a>
+            </div>
+          </div>
+        </section>
+
         <section className="section location-section" id="localizacao">
           <div className="container location-layout">
             <div className="location-copy" data-reveal="left">
@@ -634,7 +685,7 @@ export default function App() {
         </section>
 
         <section className="contact-section" id="contato">
-          <img className="contact-watermark" src="/assets/agel-logo.png" alt="" aria-hidden="true" />
+          <img className="contact-watermark" src="/assets/agel-logo-vertical.png" alt="" aria-hidden="true" />
           <div className="container contact-grid">
             <div data-reveal="left">
               <span className="eyebrow light">Próximo passo</span>
@@ -656,7 +707,7 @@ export default function App() {
         <div className="container footer-grid">
           <img src="/assets/agel-logo.png" alt="AGEL" />
           <p>Associação Gaúcha de Energia Limpa • Av. Ernesto Pandolfo, 664 • Nova Prata – RS.</p>
-          <div className="footer-links"><a href="#inicio">Início</a><a href="#simulador">Simulador</a><a href="#localizacao">Localização</a><a href="#contato">Contato</a></div>
+          <div className="footer-links"><a href="#inicio">Início</a><a href="#simulador">Simulador</a><a href="#associe-se">Associe-se</a><a href="#localizacao">Localização</a><a href="#contato">Contato</a></div>
         </div>
       </footer>
     </div>
