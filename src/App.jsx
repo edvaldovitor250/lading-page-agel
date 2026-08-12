@@ -266,6 +266,30 @@ function EcoVideoCard({ src, type, tag, title, copy, large = false }) {
   );
 }
 
+function EcoImageCard({ src, tag, title, copy }) {
+  return (
+    <article className="eco-video-card eco-image-card" data-reveal="right">
+      <img src={src} alt="Dois cães brincando em uma área verde próxima à floresta" loading="lazy" decoding="async" />
+      <div className="eco-video-shade" />
+      <span className="video-tag"><Icon name="people" size={16} /> {tag}</span>
+      <div className="eco-video-copy"><h3>{title}</h3><p>{copy}</p></div>
+    </article>
+  );
+}
+
+function EcoValueCard() {
+  return (
+    <article className="eco-value-card" data-reveal="right">
+      <div className="value-icon-orbit" aria-hidden="true"><Icon name="growth" size={58} /></div>
+      <div className="value-card-copy">
+        <span><Icon name="coins" size={17} /> Economia</span>
+        <h3>Valorização do seu dinheiro</h3>
+        <p>Energia limpa também significa economia mensal e melhor aproveitamento dos seus recursos.</p>
+      </div>
+    </article>
+  );
+}
+
 function EcoVideoGallery() {
   return (
     <section className="section eco-videos-section" id="videos">
@@ -275,36 +299,34 @@ function EcoVideoGallery() {
             <span className="eyebrow"><Icon name="sun" size={18} /> Energia em movimento</span>
             <h2>Veja a transformação acontecer</h2>
             <p>Painéis solares, áreas produtivas e florestas mostram como energia e natureza podem avançar lado a lado.</p>
+            <div className="eco-benefits">
+              <span><Icon name="leaf" size={17} /> Reduza sua pegada de carbono com energia 100% renovável</span>
+              <span><Icon name="coins" size={17} /> Economize seu dinheiro</span>
+              <span><Icon name="people" size={17} /> Ajude instituições sociais e pessoas com comorbidades</span>
+            </div>
           </div>
           <div className="video-head-brand" data-reveal="right"><img src="/assets/agel-logo.png" alt="AGEL" /><span>Geração limpa • futuro sustentável</span></div>
         </div>
         <div className="eco-video-grid">
           <EcoVideoCard
-            src="/assets/videos/agrovoltaica.webm"
-            type="video/webm"
-            tag="Agrovoltaica"
-            title="Sol e terra no mesmo espaço"
-            copy="A geração fotovoltaica pode conviver com áreas produtivas e ampliar o aproveitamento sustentável do território."
-            large
-          />
-          <EcoVideoCard
             src="/assets/videos/floresta-sol.mp4"
             type="video/mp4"
             tag="Natureza"
             title="Floresta viva"
-            copy="Preservar ambientes naturais é parte de uma visão responsável sobre energia e futuro."
+            copy="O consumo de energia limpa contribui diretamente para a sustentabilidade do planeta e a preservação dos ambientes naturais."
+            large
           />
-          <EcoVideoCard
-            src="/assets/videos/arvores-luz.mp4"
-            type="video/mp4"
-            tag="Equilíbrio"
-            title="Luz entre as árvores"
-            copy="Cada escolha por fontes renováveis ajuda a construir uma relação mais equilibrada com o planeta."
+          <EcoImageCard
+            src="/assets/animais-brincando.jpg"
+            tag="Impacto social"
+            title="Energia que cuida da vida"
+            copy="Sua escolha também ajuda instituições sociais e pessoas com comorbidades."
           />
+          <EcoValueCard />
         </div>
         <div className="video-credits">
-          <span>Vídeos sem áudio, reproduzidos somente quando visíveis.</span>
-          <span>Fontes: <a href="https://commons.wikimedia.org/wiki/File:Aasen_agrivoltaics_solar_plant_with_walls_of_vertical_bifacial_modules_near_Donaueschingen_Germany_06.webm" target="_blank" rel="noreferrer">Tobi Kellner/CC0</a> e <a href="https://mixkit.co/free-stock-video/" target="_blank" rel="noreferrer">Mixkit Free License</a>.</span>
+          <span>Vídeo sem áudio, reproduzido somente quando visível.</span>
+          <span>Vídeo: <a href="https://mixkit.co/free-stock-video/" target="_blank" rel="noreferrer">Mixkit Free License</a>.</span>
         </div>
       </div>
     </section>
