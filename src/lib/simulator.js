@@ -98,9 +98,10 @@ export function simulateSavings({
     };
   }
 
+  const tarifaEnergia = rural ? 0.81 : 0.92;
   const percentualBandeira = fatorFornecimento / consumo;
   const restituicaoBandeira = adicionalBandeira * (1 - percentualBandeira);
-  const abatimentoEnergia = (consumo - fatorFornecimento) * 0.92;
+  const abatimentoEnergia = (consumo - fatorFornecimento) * tarifaEnergia;
   const valorResidualRGE = valorFatura - restituicaoBandeira - abatimentoEnergia;
   const valorFaturaAgel = abatimentoEnergia * 0.8;
   const descontoTotal = restituicaoBandeira + abatimentoEnergia * 0.2;
@@ -108,6 +109,7 @@ export function simulateSavings({
   const economiaPercentual = (descontoTotal / baseEconomiaPercentual) * 100;
 
   const values = [
+    tarifaEnergia,
     percentualBandeira,
     restituicaoBandeira,
     abatimentoEnergia,
@@ -138,6 +140,7 @@ export function simulateSavings({
   return {
     ok: true,
     fatorFornecimento,
+    tarifaEnergia,
     percentualBandeira,
     restituicaoBandeira,
     abatimentoEnergia,

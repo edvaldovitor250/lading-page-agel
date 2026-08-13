@@ -33,7 +33,9 @@ A lógica segue exatamente a regra fornecida:
 - Trifásico: fator 100
 - `percentualBandeira = fatorFornecimento / consumo`
 - `restituicaoBandeira = adicionalBandeira * (1 - percentualBandeira)`
-- `abatimentoEnergia = (consumo - fatorFornecimento) * 0.92`
+- Unidade urbana: `tarifaEnergia = 0.92`
+- Unidade rural: `tarifaEnergia = 0.81`
+- `abatimentoEnergia = (consumo - fatorFornecimento) * tarifaEnergia`
 - `valorResidualRGE = valorFatura - restituicaoBandeira - abatimentoEnergia`
 - `valorFaturaAgel = abatimentoEnergia * 0.80`
 - `descontoTotal = restituicaoBandeira + (abatimentoEnergia * 0.20)`
@@ -41,7 +43,7 @@ A lógica segue exatamente a regra fornecida:
 
 ## Unidade rural
 
-A lógica rural foi isolada em `simulateRuralUnit()` e, por enquanto, retorna apenas a mensagem de que a funcionalidade está em implantação. Nenhuma regra rural foi inventada.
+Quando a opção de unidade rural está ativa, o abatimento utiliza a tarifa de energia de R$ 0,81 por kWh. Nas demais unidades, utiliza R$ 0,92 por kWh.
 
 ## Cenário de validação
 
@@ -72,6 +74,5 @@ O CSS inclui breakpoints específicos para desktop, tablet e mobile, com atenç�
 1. Conectar formulário final ao WhatsApp/CRM.
 2. Substituir os placeholders de depoimentos por vídeos reais.
 3. Conectar estatísticas a uma API/painel administrativo.
-4. Implementar a regra rural quando a fórmula oficial for fornecida.
-5. Adicionar autenticação para a futura área do associado.
-6. Adicionar páginas específicas de geradores, social, blog e SEO programático.
+4. Adicionar autenticação para a futura área do associado.
+5. Adicionar páginas específicas de geradores, social, blog e SEO programático.

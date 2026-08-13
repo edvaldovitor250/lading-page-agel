@@ -319,7 +319,7 @@ export default function Simulator() {
             {form.rural && (
               <div className="inline-notice" role="status">
                 <Icon name="info" size={19} />
-                <span>A estimativa usa a mesma fórmula-base. A elegibilidade rural será confirmada pela equipe AGEL.</span>
+                <span>Para unidades rurais, o cálculo usa a tarifa de energia de R$ 0,81 por kWh.</span>
               </div>
             )}
 
@@ -383,7 +383,7 @@ export default function Simulator() {
             </div>
 
             {result.rural && (
-              <div className="result-rural-note"><Icon name="info" size={18} /> Esta é uma estimativa rural pela fórmula-base. A equipe AGEL fará a confirmação final da unidade.</div>
+              <div className="result-rural-note"><Icon name="info" size={18} /> Estimativa rural calculada com a tarifa de energia de R$ 0,81 por kWh.</div>
             )}
 
             <button className="details-toggle" type="button" onClick={() => setShowDetails((value) => !value)} aria-expanded={showDetails}>
@@ -394,6 +394,7 @@ export default function Simulator() {
             {showDetails && (
               <div className="calculation-details">
                 <div><span>Fator utilizado</span><strong>{result.fatorFornecimento}</strong></div>
+                <div><span>Tarifa de energia</span><strong>{formatBRL(result.tarifaEnergia)} por kWh</strong></div>
                 <div><span>Percentual da bandeira</span><strong>{formatPercent(result.percentualBandeira * 100)}</strong></div>
                 <div><span>Restituição da bandeira</span><strong>{formatBRL(result.restituicaoBandeira)}</strong></div>
                 <div><span>Abatimento da energia injetada</span><strong>{formatBRL(result.abatimentoEnergia)}</strong></div>
