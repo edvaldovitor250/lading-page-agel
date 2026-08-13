@@ -366,7 +366,7 @@ function EcoVideoGallery() {
             ]}
             tag="Impacto social"
             title="Energia que cuida da vida"
-            copy="Sua escolha também ajuda instituições sociais e pessoas com comorbidades."
+            copy="Parte da receita da AGEL é destinada a ajudar quem mais precisa. Um impacto que só é possível graças a cada associado que faz parte dessa transformação."
           />
           <EcoValueCard />
         </div>

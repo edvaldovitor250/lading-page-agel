@@ -175,6 +175,7 @@ img { max-width: 100%; display: block; }
 .eco-video-copy h3 { font-size: 23px; line-height: 1.15; margin: 0 0 6px; letter-spacing: -.025em; }
 .eco-video-card.large .eco-video-copy h3 { font-size: 34px; }
 .eco-video-copy p { max-width: 580px; color: rgba(255,255,255,.78); font-size: 11px; line-height: 1.6; margin: 0; }
+.eco-image-card .eco-video-copy p { max-width: 620px; color: rgba(255,255,255,.86); }
 .eco-video-card.large .eco-video-copy p { font-size: 13px; }
 .eco-value-card { position: relative; overflow: hidden; border-radius: 20px; padding: 24px; color: white; background: linear-gradient(135deg, var(--petrol-950), #087a7d); box-shadow: 0 22px 54px rgba(0,63,73,.18); display: grid; grid-template-columns: 128px 1fr; align-items: center; gap: 22px; isolation: isolate; }
 .eco-value-card::before { content: ''; position: absolute; z-index: -1; width: 290px; height: 290px; right: -120px; top: -150px; border-radius: 50%; background: rgba(195,216,45,.14); box-shadow: 0 0 0 42px rgba(255,255,255,.035); }
