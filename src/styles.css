@@ -54,12 +54,16 @@ img { max-width: 100%; display: block; }
 .site-header.is-scrolled .brand-symbol img { width: 85px; transform: translate(-14px,-1px); }
 .site-header.is-scrolled .brand-name strong { font-size: 30px; }
 .scroll-progress { position: absolute; left: 0; bottom: -1px; height: 3px; background: linear-gradient(90deg, var(--teal-500), var(--green-400), var(--lime-400)); box-shadow: 0 0 12px rgba(0,155,167,.4); transition: width .08s linear; }
-.scroll-companion { position: fixed; z-index: 55; right: 22px; bottom: 22px; width: min(510px, calc(100vw - 44px)); min-height: 92px; padding: 11px; border: 1px solid #cfe2df; border-radius: 19px; background: rgba(255,255,255,.97); box-shadow: 0 20px 55px rgba(0,63,73,.22); backdrop-filter: blur(16px); display: grid; grid-template-columns: 72px minmax(130px,1fr) auto 36px; align-items: center; gap: 11px; opacity: 0; visibility: hidden; pointer-events: none; transform: translateY(28px) scale(.94); transition: opacity .38s ease, transform .38s cubic-bezier(.2,.8,.2,1), visibility .38s; }
+.scroll-companion { position: fixed; z-index: 55; right: 22px; bottom: 22px; width: min(590px, calc(100vw - 44px)); min-height: 96px; padding: 12px 14px; border: 1px solid #cfe2df; border-radius: 22px; background: rgba(255,255,255,.97); box-shadow: 0 20px 55px rgba(0,63,73,.22); backdrop-filter: blur(16px); display: grid; grid-template-columns: 126px minmax(130px,1fr) auto; align-items: center; gap: 15px; opacity: 0; visibility: hidden; pointer-events: none; transform: translateY(28px) scale(.94); transition: opacity .38s ease, transform .38s cubic-bezier(.2,.8,.2,1), visibility .38s; }
 .scroll-companion.is-visible { opacity: 1; visibility: visible; pointer-events: auto; transform: translateY(0) scale(1); }
-.scroll-companion .companion-logo { width: 70px; height: 70px; object-fit: contain; border-radius: 13px; }
-.scroll-companion strong, .scroll-companion span { display: block; }
-.scroll-companion strong { color: var(--petrol-950); font-size: 11px; }
-.scroll-companion span { color: var(--muted); font-size: 9px; margin-top: 2px; }
+.companion-brand { min-width: 0; display: flex; align-items: center; gap: 7px; padding-right: 13px; border-right: 1px solid var(--line); }
+.companion-brand-symbol { width: 48px; height: 48px; overflow: hidden; flex: 0 0 auto; }
+.companion-brand-symbol img { width: 72px; max-width: none; transform: translate(-12px,-1px); }
+.companion-brand-copy, .companion-brand-copy strong, .companion-brand-copy small, .companion-copy strong, .companion-copy span { display: block; }
+.scroll-companion .companion-brand-copy strong { color: #303a39; font-size: 21px; line-height: 1; letter-spacing: .025em; font-weight: 600; }
+.scroll-companion .companion-brand-copy small { color: var(--muted); font-size: 5.5px; line-height: 1.25; margin-top: 4px; font-weight: 700; }
+.scroll-companion .companion-copy strong { color: var(--petrol-950); font-size: 11px; line-height: 1.3; }
+.scroll-companion .companion-copy span { color: var(--muted); font-size: 9px; line-height: 1.35; margin-top: 3px; }
 .scroll-companion .companion-actions { display: flex; align-items: center; gap: 7px; }
 .scroll-companion a { min-height: 38px; border-radius: 10px; padding: 0 11px; display: inline-flex; align-items: center; justify-content: center; gap: 5px; white-space: nowrap; font-size: 10px; font-weight: 900; transition: transform .2s ease, box-shadow .2s ease; }
 .scroll-companion a:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(0,63,73,.14); }
@@ -586,9 +590,13 @@ img { max-width: 100%; display: block; }
   .site-header.is-scrolled .brand-symbol img { width: 75px; transform: translate(-12px,-1px); }
   .site-header.is-scrolled .brand-name strong { font-size: 26px; }
   .site-header.is-scrolled .main-nav { top: 68px; }
-  .scroll-companion { left: 12px; right: 12px; bottom: 12px; width: auto; min-height: 70px; grid-template-columns: 54px minmax(0,1fr) 34px; gap: 8px; padding: 8px; }
-  .scroll-companion .companion-logo { width: 52px; height: 52px; border-radius: 10px; }
-  .scroll-companion > div:not(.companion-actions) { display: none; }
+  .scroll-companion { left: 12px; right: 12px; bottom: 12px; width: auto; min-height: 70px; grid-template-columns: 82px minmax(0,1fr); gap: 8px; padding: 8px 9px; border-radius: 18px; }
+  .companion-brand { gap: 4px; padding-right: 7px; }
+  .companion-brand-symbol { width: 37px; height: 38px; }
+  .companion-brand-symbol img { width: 57px; transform: translate(-10px,0); }
+  .scroll-companion .companion-brand-copy strong { font-size: 16px; }
+  .scroll-companion .companion-brand-copy small { display: none; }
+  .scroll-companion .companion-copy { display: none; }
   .scroll-companion .companion-actions { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 6px; }
   .scroll-companion a { min-height: 38px; padding: 0 8px; }
   .hero { min-height: 0; }
@@ -688,8 +696,10 @@ img { max-width: 100%; display: block; }
 @media (max-width: 320px) {
   .container { width: calc(100% - 32px); }
   .brand-name strong { font-size: 25px; }
-  .scroll-companion { left: 8px; right: 8px; bottom: 8px; grid-template-columns: 48px minmax(0,1fr) 32px; gap: 5px; padding: 6px; }
-  .scroll-companion .companion-logo { width: 46px; height: 46px; }
+  .scroll-companion { left: 8px; right: 8px; bottom: 8px; grid-template-columns: 68px minmax(0,1fr); gap: 5px; padding: 6px; }
+  .companion-brand-symbol { width: 31px; height: 34px; }
+  .companion-brand-symbol img { width: 51px; transform: translate(-10px,0); }
+  .scroll-companion .companion-brand-copy strong { font-size: 13px; }
   .scroll-companion a { padding: 0 5px; font-size: 9px; }
   .hero h1 { font-size: 36px; }
   .hero-panel { padding: 18px; }
