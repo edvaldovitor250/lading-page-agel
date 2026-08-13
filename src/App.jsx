@@ -508,7 +508,9 @@ export default function App() {
             </div>
             <div className="stat-card text-stat environmental-equivalence" data-reveal="scale" style={{ transitionDelay: '270ms' }}>
               <span className="stat-icon"><Icon name="leaf" size={22} /></span>
-              <strong>+315 t</strong><span>de CO₂ evitadas</span><small>equivalente a 31.500 árvores cultivadas</small>
+              <strong>+315 t</strong>
+              <span>de CO₂ evitadas</span>
+              <small><Icon name="leaf" size={13} /> equivalente a 31.500 árvores cultivadas</small>
             </div>
           </div>
         </section>

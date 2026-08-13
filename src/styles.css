@@ -129,7 +129,8 @@ img { max-width: 100%; display: block; }
 .stat-card strong { grid-area: value; font-size: clamp(21px, 2vw, 28px); line-height: 1.1; color: var(--petrol-900); }
 .stat-card > span:not(.stat-icon) { grid-area: label; font-size: 13px; font-weight: 800; }
 .stat-card small { grid-area: note; color: var(--muted); font-size: 11px; margin-top: 3px; }
-.environmental-equivalence small { max-width: 185px; line-height: 1.35; }
+.environmental-equivalence small { max-width: 210px; display: flex; align-items: center; gap: 4px; margin-top: 6px; color: var(--petrol-800); font-size: 11px; line-height: 1.35; font-weight: 800; }
+.environmental-equivalence small svg { flex: 0 0 auto; color: var(--green-500); }
 
 .associates-section { position: relative; overflow: hidden; background-color: #fbfdfc; background-image: radial-gradient(circle at 4% 22%, transparent 0 11px, rgba(0,155,167,.045) 12px 14px, transparent 15px), radial-gradient(circle at 91% 70%, transparent 0 18px, rgba(117,173,52,.045) 19px 21px, transparent 22px), radial-gradient(circle at 61% 18%, transparent 0 7px, rgba(0,81,93,.035) 8px 10px, transparent 11px); background-size: 170px 150px, 230px 190px, 130px 120px; }
 .associates-section .section-heading { margin-bottom: 36px; }
@@ -682,6 +683,8 @@ img { max-width: 100%; display: block; }
   .hero-panel-grid { grid-template-columns: 1fr; }
   .hero-checks { display: grid; }
   .stat-card { min-height: 126px; }
+  .stat-card.environmental-equivalence { min-height: 156px; }
+  .environmental-equivalence small { max-width: 230px; font-size: 12px; }
   .dashboard-grid { grid-template-columns: 1fr; }
   .result-hero-card strong small { display: block; margin-top: 6px; }
   .contact-grid h2 { font-size: 36px; }
