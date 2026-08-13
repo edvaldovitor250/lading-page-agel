@@ -67,7 +67,8 @@ function Header() {
     <header className={`site-header ${progress > 2 ? 'is-scrolled' : ''}`}>
       <div className="container header-inner">
         <a className="brand" href="#inicio" aria-label="AGEL - início">
-          <img src="/assets/agel-logo-vertical.png" alt="AGEL - Associação Gaúcha de Energia Limpa" />
+          <span className="brand-symbol" aria-hidden="true"><img src="/assets/agel-logo-vertical.png" alt="" /></span>
+          <span className="brand-name"><strong>AGEL</strong><small>Associação Gaúcha de Energia Limpa</small></span>
         </a>
         <button className="mobile-menu-button" type="button" aria-label="Abrir menu" aria-expanded={open} onClick={() => setOpen((v) => !v)}>
           <Icon name={open ? 'close' : 'menu'} size={26} />
@@ -124,8 +125,8 @@ const faq = [
   ['Existe mensalidade ou taxa de adesão?', 'Não. A AGEL não cobra nenhum tipo de mensalidade ou taxa de adesão.'],
   ['Por que continuo pagando a concessionária?', 'A concessionária continua responsável pelo transporte e pela entrega da energia até a sua unidade consumidora. Por isso, a taxa mínima de consumo e os impostos permanecem na fatura da concessionária. Já a cobrança da AGEL corresponde à energia compensada, conforme as condições da associação.'],
   ['Funciona para unidade rural?', 'Sim. O simulador gera uma estimativa pela fórmula-base e identifica a unidade como rural. A elegibilidade e as condições finais são confirmadas pela equipe AGEL.'],
-  ['A economia será sempre de 35%?', 'O percentual depende das condições da unidade consumidora e da bandeira tarifária do período. O simulador apresenta uma estimativa com os dados da sua conta, e a equipe AGEL confirma as condições antes da associação.'],
-  ['Quem pode se associar à AGEL?', 'Residências, empresas, condomínios e unidades rurais podem solicitar uma análise. A elegibilidade é confirmada individualmente conforme os dados da unidade consumidora.'],
+  ['Por que a economia varia?', 'Os associados da AGEL recebem integralmente a restituição da bandeira tarifária. Por isso, nos períodos em que a tarifa de energia está mais alta, o percentual de economia também aumenta, podendo chegar a 35%.'],
+  ['Quem pode se associar à AGEL?', 'Todos os clientes com fornecimento de energia em baixa tensão podem se associar à AGEL.'],
   ['Como faço para me associar?', 'Na seção “Associe-se agora”, escolha Pessoa Física ou Pessoa Jurídica. O botão abre o documento correspondente para assinatura eletrônica segura pela ZapSign.'],
 ];
 
@@ -272,12 +273,43 @@ function EcoVideoCard({ src, type, tag, title, copy, large = false }) {
   );
 }
 
-function EcoImageCard({ src, tag, title, copy }) {
+function EcoImageCard({ images, tag, title, copy }) {
+  const [activeImage, setActiveImage] = useState(0);
+
+  useEffect(() => {
+    if (images.length < 2 || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined;
+    const timer = window.setInterval(() => setActiveImage((current) => (current + 1) % images.length), 4500);
+    return () => window.clearInterval(timer);
+  }, [images.length]);
+
   return (
     <article className="eco-video-card eco-image-card" data-reveal="right">
-      <img src={src} alt="Dois cães brincando em uma área verde próxima à floresta" loading="lazy" decoding="async" />
+      <div className="eco-image-slides">
+        {images.map((image, index) => (
+          <img
+            className={index === activeImage ? 'is-active' : ''}
+            src={image.src}
+            alt={image.alt}
+            loading={index === 0 ? 'eager' : 'lazy'}
+            decoding="async"
+            key={image.src}
+          />
+        ))}
+      </div>
       <div className="eco-video-shade" />
       <span className="video-tag"><Icon name="people" size={16} /> {tag}</span>
+      <div className="eco-image-dots" aria-label="Selecionar imagem">
+        {images.map((image, index) => (
+          <button
+            type="button"
+            className={index === activeImage ? 'is-active' : ''}
+            onClick={() => setActiveImage(index)}
+            aria-label={`Mostrar imagem ${index + 1}: ${image.alt}`}
+            aria-current={index === activeImage ? 'true' : undefined}
+            key={image.src}
+          />
+        ))}
+      </div>
       <div className="eco-video-copy"><h3>{title}</h3><p>{copy}</p></div>
     </article>
   );
@@ -323,7 +355,13 @@ function EcoVideoGallery() {
             large
           />
           <EcoImageCard
-            src="/assets/animais-brincando.jpg"
+            images={[
+              { src: '/assets/impact-social/crianca-inclusao.jpg', alt: 'Criança sorrindo em um ambiente colorido' },
+              { src: '/assets/impact-social/crianca-tratamento.jpg', alt: 'Criança sorrindo durante tratamento hospitalar' },
+              { src: '/assets/impact-social/crianca-acessibilidade.jpg', alt: 'Criança sorrindo em assento adaptado' },
+              { src: '/assets/impact-social/bombeiros-voluntarios.jpg', alt: 'Capacete de bombeiros voluntários' },
+              { src: '/assets/impact-social/cuidado-idosos.jpg', alt: 'Profissional de saúde acompanhando uma pessoa idosa' },
+            ]}
             tag="Impacto social"
             title="Energia que cuida da vida"
             copy="Sua escolha também ajuda instituições sociais e pessoas com comorbidades."
@@ -466,11 +504,10 @@ export default function App() {
               <span className="stat-icon"><Icon name="bolt" size={22} /></span>
               <strong>+R$ 350 mil</strong><span>em descontos distribuídos</span><small>economia para os associados</small>
             </div>
-            <div className="stat-card text-stat" data-reveal="scale" style={{ transitionDelay: '270ms' }}>
+            <div className="stat-card text-stat environmental-equivalence" data-reveal="scale" style={{ transitionDelay: '270ms' }}>
               <span className="stat-icon"><Icon name="leaf" size={22} /></span>
-              <strong>+315 t</strong><span>de CO₂ evitadas</span><small>redução de emissões</small>
+              <strong>+315 t</strong><span>de CO₂ evitadas</span><small>equivalente a 31.500 árvores cultivadas</small>
             </div>
-            <Stat value={31500} label="árvores" note="cultivadas" icon="leaf" delay={360} />
           </div>
         </section>
 
@@ -558,7 +595,7 @@ export default function App() {
               <div className="dashboard-grid">
                 <div><strong>+900</strong><span>associados</span></div>
                 <div><strong>+45</strong><span>usinas</span></div>
-                <div><strong>+315 t</strong><span>de CO₂ evitadas</span></div>
+                <div><strong>+315 t</strong><span>de CO₂ evitadas<br />equivalente a 31.500 árvores cultivadas</span></div>
                 <div><strong>+R$ 350 mil</strong><span>em descontos distribuídos</span></div>
               </div>
               <p>Geração renovável, economia compartilhada e compromisso com um futuro de menor impacto ambiental.</p>
