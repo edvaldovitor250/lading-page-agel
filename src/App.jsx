@@ -101,7 +101,7 @@ function ScrollCompanion() {
   return (
     <aside className={`scroll-companion ${visible ? 'is-visible' : ''}`} aria-label="Atalhos AGEL">
       <div className="companion-brand" aria-label="AGEL — Associação Gaúcha de Energia Limpa">
-        <span className="companion-brand-symbol" aria-hidden="true"><img src="/assets/agel-logo-vertical.png" alt="" /></span>
+        <span className="companion-brand-symbol" aria-hidden="true"><img src="/assets/agel-symbol.png" alt="" /></span>
         <span className="companion-brand-copy"><strong>AGEL</strong><small>Associação Gaúcha de<br />Energia Limpa</small></span>
       </div>
       <div className="companion-copy"><strong>Quer descobrir sua economia?</strong><span>Envie a conta ou preencha os dados.</span></div>

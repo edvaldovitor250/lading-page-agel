@@ -43,46 +43,33 @@ export default function BillGuideModal({ open, onClose }) {
         </div>
 
         <p className="modal-copy">
-          Exemplo ilustrativo. Dados pessoais foram propositalmente ocultados. Confira a nomenclatura da sua concessionária.
+          Use a fatura original da concessionária. Os dados pessoais do exemplo abaixo foram ocultados por segurança.
         </p>
 
-        <div className="invoice-demo" aria-label="Exemplo ilustrativo de fatura de energia">
-          <div className="invoice-topline">
-            <div className="invoice-brand">CONCESSIONÁRIA</div>
-            <div className="invoice-code blur-line">000000000000000</div>
-          </div>
-          <div className="invoice-grid">
-            <div className="invoice-panel">
-              <span className="invoice-label">Cliente</span>
-              <div className="blur-line wide" />
-              <div className="blur-line medium" />
-            </div>
-            <div className="invoice-panel callout c1">
-              <span>1</span>
-              <div><strong>Valor da fatura</strong><b>R$ 165,90</b></div>
-            </div>
-            <div className="invoice-panel callout c2">
-              <span>2</span>
-              <div><strong>Consumo em kWh</strong><b>141 kWh</b></div>
-            </div>
-            <div className="invoice-panel callout c3">
-              <span>3</span>
-              <div><strong>Tipo de fornecimento</strong><b>Monofásico</b></div>
-            </div>
-            <div className="invoice-panel details-panel">
-              <span className="invoice-label">Detalhamento</span>
-              <div className="fake-row"><i /> <em /></div>
-              <div className="fake-row"><i /> <em /></div>
-              <div className="fake-row"><i /> <em /></div>
-              <div className="fake-row"><i /> <em /></div>
-            </div>
-            <div className="invoice-panel callout c4">
-              <span>4</span>
-              <div><strong>Adicional de bandeira</strong><b>R$ 3,36</b></div>
-            </div>
-          </div>
-          <div className="invoice-footer blur-line" />
+        <a
+          className="original-invoice-guide"
+          href="/assets/fatura-original-anonimizada.png"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Abrir a fatura original em tamanho maior"
+        >
+          <img
+            src="/assets/fatura-original-anonimizada.png"
+            alt="Fatura original da CPFL com marcações no valor total, consumo em kWh, tipo de fornecimento e adicional de bandeira"
+          />
+          <span><Icon name="document" size={17} /> Toque ou clique para ampliar a fatura</span>
+        </a>
+
+        <div className="bill-guide-legend" aria-label="Legenda dos dados da fatura">
+          <div><b>1</b><span>Valor total da fatura</span></div>
+          <div><b>2</b><span>Consumo em kWh</span></div>
+          <div><b>3</b><span>Tipo de fornecimento</span></div>
+          <div><b>4</b><span>Adicional de bandeira</span></div>
         </div>
+
+        <p className="bill-guide-note">
+          A posição dos campos pode variar conforme a concessionária, mas a nomenclatura costuma ser semelhante.
+        </p>
       </div>
     </div>
   );
