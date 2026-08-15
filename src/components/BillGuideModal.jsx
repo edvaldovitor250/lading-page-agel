@@ -55,7 +55,7 @@ export default function BillGuideModal({ open, onClose }) {
         >
           <img
             src="/assets/fatura-original-anonimizada.png"
-            alt="Fatura original da CPFL com marcações no valor total, consumo em kWh, tipo de fornecimento e adicional de bandeira"
+            alt="Fatura original da CPFL com marcações no valor total, consumo em kWh, tipo de fornecimento, adicional de bandeira e tensão nominal disponível"
           />
           <span><Icon name="document" size={17} /> Toque ou clique para ampliar a fatura</span>
         </a>
@@ -65,6 +65,7 @@ export default function BillGuideModal({ open, onClose }) {
           <div><b>2</b><span>Consumo em kWh</span></div>
           <div><b>3</b><span>Tipo de fornecimento</span></div>
           <div><b>4</b><span>Adicional de bandeira</span></div>
+          <div><b>5</b><span>Tensão nominal disponível</span></div>
         </div>
 
         <p className="bill-guide-note">
