@@ -34,7 +34,7 @@ A lógica segue exatamente a regra fornecida:
 - `percentualBandeira = fatorFornecimento / consumo`
 - `restituicaoBandeira = adicionalBandeira * (1 - percentualBandeira)`
 - Unidade urbana: `tarifaEnergia = 0.92`
-- Unidade rural: `tarifaEnergia = 0.81`
+- Unidade rural: `tarifaEnergia = 0.80196`
 - `abatimentoEnergia = (consumo - fatorFornecimento) * tarifaEnergia`
 - `valorResidualRGE = valorFatura - restituicaoBandeira - abatimentoEnergia`
 - `valorFaturaAgel = abatimentoEnergia * 0.80`
@@ -43,7 +43,11 @@ A lógica segue exatamente a regra fornecida:
 
 ## Unidade rural
 
-Quando a opção de unidade rural está ativa, o abatimento utiliza a tarifa de energia de R$ 0,81 por kWh. Nas demais unidades, utiliza R$ 0,92 por kWh.
+Quando a opção de unidade rural está ativa, o abatimento utiliza a tarifa de energia de R$ 0,80196 por kWh. Nas demais unidades, utiliza R$ 0,92 por kWh.
+
+## Média de consumo importada
+
+Ao importar uma fatura em PDF, o simulador procura o quadro “Consumo / kWh”, soma os meses encontrados e divide pela quantidade de meses realmente disponível. O consumo médio é preenchido no formulário; ao calcular, o fator mínimo é descontado uma única vez conforme o tipo de fornecimento (30 kWh no monofásico, 50 kWh no bifásico e 100 kWh no trifásico).
 
 ## Cenário de validação
 

@@ -63,13 +63,13 @@ export default function BillGuideModal({ open, onClose }) {
         <div className="bill-guide-legend" aria-label="Legenda dos dados da fatura">
           <div><b>1</b><span>Valor total da fatura</span></div>
           <div><b>2</b><span>Consumo em kWh</span></div>
-          <div><b>3</b><span>Tipo de fornecimento</span></div>
+          <div className="supply-guide"><b>3</b><span>Tipo de fornecimento</span></div>
+          <div className="supply-guide"><b>5</b><span>Tensão disponível</span></div>
           <div><b>4</b><span>Adicional de bandeira</span></div>
-          <div><b>5</b><span>Tensão nominal disponível</span></div>
         </div>
 
         <p className="bill-guide-note">
-          A posição dos campos pode variar conforme a concessionária, mas a nomenclatura costuma ser semelhante.
+          Tipo de fornecimento e tensão disponível ficam próximos no topo da fatura. A posição dos campos pode variar conforme a concessionária, mas a nomenclatura costuma ser semelhante.
         </p>
       </div>
     </div>

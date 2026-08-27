@@ -36,6 +36,59 @@ function firstMatch(text, patterns) {
   return null;
 }
 
+const MONTH_NAMES = 'JAN|FEV|MAR|ABR|MAI|JUN|JUL|AGO|SET|OUT|NOV|DEZ';
+const HISTORY_START = /(?:Consumo\s*\/\s*kWh|Historico\s+(?:de\s+)?Consumo)/i;
+const HISTORY_END = /(?:Bandeiras?\s+Tarifarias?|Indicadores?\s+de\s+Continuidade|Reservado\s+ao\s+Fisco)/i;
+
+/**
+ * Extrai somente as linhas do quadro de historico de consumo. Limitar a busca
+ * a esse quadro evita confundir meses presentes na descricao das tarifas com
+ * os meses usados no calculo da media.
+ */
+export function parseConsumptionHistory(rawText) {
+  const lines = String(rawText ?? '')
+    .split(/\r?\n/)
+    .map((line) => normalizeText(line))
+    .filter(Boolean);
+  const startIndex = lines.findIndex((line) => HISTORY_START.test(line));
+
+  if (startIndex === -1) return [];
+
+  const sectionLines = [];
+  for (let index = startIndex; index < lines.length && sectionLines.length < 24; index += 1) {
+    const line = lines[index];
+    if (index > startIndex && HISTORY_END.test(line)) break;
+    sectionLines.push(line);
+  }
+
+  const section = sectionLines.join('\n');
+  const monthPattern = new RegExp(`\\b(${MONTH_NAMES})\\s*[\\/.-]?\\s*(\\d{2}|\\d{4})\\b`, 'gi');
+  const matches = Array.from(section.matchAll(monthPattern));
+  const history = [];
+  const seenMonths = new Set();
+
+  matches.forEach((match, index) => {
+    const segmentStart = match.index + match[0].length;
+    const segmentEnd = matches[index + 1]?.index ?? section.length;
+    const segment = section.slice(segmentStart, segmentEnd);
+    const numberMatch = segment.match(/\b(?:\d{1,3}(?:\.\d{3})+|\d+)(?:,\d+)?\b/);
+    const value = parseBrazilianNumber(numberMatch?.[0]);
+    const monthKey = `${match[1].toUpperCase()}-${match[2]}`;
+
+    if (Number.isFinite(value) && value > 0 && !seenMonths.has(monthKey)) {
+      seenMonths.add(monthKey);
+      history.push({ month: match[1].toUpperCase(), year: match[2], value });
+    }
+  });
+
+  return history;
+}
+
+function calculateAverage(values) {
+  if (!values.length) return null;
+  return values.reduce((total, value) => total + value, 0) / values.length;
+}
+
 export function parseRgeBillText(rawText) {
   const text = normalizeText(rawText);
 
@@ -44,10 +97,14 @@ export function parseRgeBillText(rawText) {
     /\bR\$\s*([\d.]+,\d{2})\b/i,
   ]));
 
-  const consumo = parseBrazilianNumber(firstMatch(text, [
+  const consumoAtual = parseBrazilianNumber(firstMatch(text, [
     /Consumo Uso Sistema\s*\[?KWh\]?[^]*?\bkWh\s+([\d.]+,\d{4})\b/i,
     /Energia Ativa-kWh[^]*?\b([\d.]+(?:,\d+)?)\s*$/i,
   ]));
+
+  const historicoConsumo = parseConsumptionHistory(rawText);
+  const consumoMedio = calculateAverage(historicoConsumo.map(({ value }) => value));
+  const consumo = consumoMedio ?? consumoAtual;
 
   const tipoRaw = firstMatch(text, [
     /Tipo de Fornecimento\s*:?\s*(Monofasico|Bifasico|Trifasico)\b/i,
@@ -74,6 +131,9 @@ export function parseRgeBillText(rawText) {
   return {
     valorFatura,
     consumo,
+    consumoMedio,
+    mesesConsumo: historicoConsumo.length,
+    historicoConsumo,
     tipoFornecimento,
     tensaoNominal,
     adicionalBandeira,
@@ -99,7 +159,22 @@ export async function readRgeBillPdf(file) {
   for (let pageNumber = 1; pageNumber <= document.numPages; pageNumber += 1) {
     const page = await document.getPage(pageNumber);
     const content = await page.getTextContent();
-    pages.push(content.items.map((item) => item.str).join(' '));
+    const rows = new Map();
+
+    content.items.forEach((item) => {
+      const y = Math.round((item.transform?.[5] ?? 0) / 2) * 2;
+      if (!rows.has(y)) rows.set(y, []);
+      rows.get(y).push({ x: item.transform?.[4] ?? 0, text: item.str });
+    });
+
+    const pageText = Array.from(rows.entries())
+      .sort(([firstY], [secondY]) => secondY - firstY)
+      .map(([, items]) => items
+        .sort((first, second) => first.x - second.x)
+        .map(({ text }) => text)
+        .join(' '))
+      .join('\n');
+    pages.push(pageText);
   }
 
   const text = pages.join('\n');
@@ -108,7 +183,12 @@ export async function readRgeBillPdf(file) {
   }
 
   const fields = parseRgeBillText(text);
-  const found = Object.values(fields).filter((value) => value !== null && value !== false).length;
+  const found = [
+    fields.valorFatura,
+    fields.consumo,
+    fields.tipoFornecimento,
+    fields.tensaoNominal,
+  ].filter((value) => value !== null).length;
   if (found < 3) {
     throw new Error('Não consegui identificar os dados principais desta conta. Preencha os campos manualmente.');
   }

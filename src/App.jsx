@@ -79,8 +79,8 @@ function Header() {
           <a href="#impacto" onClick={() => setOpen(false)}>Impacto</a>
           <a href="#localizacao" onClick={() => setOpen(false)}>Localização</a>
           <a href="#faq" onClick={() => setOpen(false)}>Dúvidas</a>
-          <a href="#associe-se" onClick={() => setOpen(false)}>Associe-se agora</a>
-          <a className="nav-cta" href="#contato" onClick={() => setOpen(false)}>Quero economizar</a>
+          <a href="#contato" onClick={() => setOpen(false)}>Fale conosco</a>
+          <a className="nav-cta" href="#associe-se" onClick={() => setOpen(false)}>Associe-se agora</a>
         </nav>
       </div>
       <span className="scroll-progress" style={{ width: `${progress}%` }} aria-hidden="true" />
@@ -126,7 +126,7 @@ const faq = [
   ['Precisa instalar placas na minha casa ou empresa?', 'O modelo apresentado pela AGEL é de energia compartilhada, portanto a proposta não depende da instalação de placas no imóvel do associado.'],
   ['Existe mensalidade ou taxa de adesão?', 'Não. A AGEL não cobra nenhum tipo de mensalidade ou taxa de adesão.'],
   ['Por que continuo pagando a concessionária?', 'A concessionária continua responsável pelo transporte e pela entrega da energia até a sua unidade consumidora. Por isso, a taxa mínima de consumo e os impostos permanecem na fatura da concessionária. Já a cobrança da AGEL corresponde à energia compensada, conforme as condições da associação.'],
-  ['Funciona para unidade rural?', 'Sim. Para unidades rurais, o simulador utiliza a tarifa de energia de R$ 0,81 por kWh. A elegibilidade e as condições finais são confirmadas pela equipe AGEL.'],
+  ['Funciona para unidade rural?', 'Sim. Para unidades rurais, o simulador utiliza a tarifa de energia de R$ 0,80196 por kWh. A elegibilidade e as condições finais são confirmadas pela equipe AGEL.'],
   ['Por que a economia varia?', 'Os associados da AGEL recebem integralmente a restituição da bandeira tarifária. Por isso, nos períodos em que a tarifa de energia está mais alta, o percentual de economia também aumenta, podendo chegar a 35%.'],
   ['Quem pode se associar à AGEL?', 'Todos os clientes com fornecimento de energia em baixa tensão podem se associar à AGEL.'],
   ['Como faço para me associar?', 'Na seção “Associe-se agora”, escolha Pessoa Física ou Pessoa Jurídica. O botão abre o documento correspondente para assinatura eletrônica segura pela ZapSign.'],
