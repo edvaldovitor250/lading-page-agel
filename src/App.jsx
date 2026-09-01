@@ -63,6 +63,26 @@ function Header() {
     return () => window.removeEventListener('scroll', updateProgress);
   }, []);
 
+  useEffect(() => {
+    if (!open) return undefined;
+
+    const desktopQuery = window.matchMedia('(min-width: 861px)');
+    const closeMenu = () => setOpen(false);
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') closeMenu();
+    };
+    const handleViewportChange = (event) => {
+      if (event.matches) closeMenu();
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    desktopQuery.addEventListener?.('change', handleViewportChange);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      desktopQuery.removeEventListener?.('change', handleViewportChange);
+    };
+  }, [open]);
+
   return (
     <header className={`site-header ${progress > 2 ? 'is-scrolled' : ''}`}>
       <div className="container header-inner">
@@ -70,10 +90,10 @@ function Header() {
           <span className="brand-symbol" aria-hidden="true"><img src="/assets/agel-logo-vertical.png" alt="" /></span>
           <span className="brand-name"><strong>AGEL</strong><small>Associação Gaúcha de Energia Limpa</small></span>
         </a>
-        <button className="mobile-menu-button" type="button" aria-label="Abrir menu" aria-expanded={open} onClick={() => setOpen((v) => !v)}>
+        <button className="mobile-menu-button" type="button" aria-label={open ? 'Fechar menu' : 'Abrir menu'} aria-controls="main-navigation" aria-expanded={open} onClick={() => setOpen((v) => !v)}>
           <Icon name={open ? 'close' : 'menu'} size={26} />
         </button>
-        <nav className={`main-nav ${open ? 'is-open' : ''}`} aria-label="Navegação principal">
+        <nav id="main-navigation" className={`main-nav ${open ? 'is-open' : ''}`} aria-label="Navegação principal">
           <a href="#como-funciona" onClick={() => setOpen(false)}>Como funciona</a>
           <a href="#simulador" onClick={() => setOpen(false)}>Simulador</a>
           <a href="#impacto" onClick={() => setOpen(false)}>Impacto</a>
@@ -765,8 +785,8 @@ export default function App() {
               <p>Envie seus dados ou fale diretamente com a equipe pelo telefone ou WhatsApp (54) 2121-4007.</p>
             </div>
             <form className="contact-card" onSubmit={handleContactSubmit} data-reveal="right">
-              <div className="contact-field"><label htmlFor="contact-name">Nome</label><input id="contact-name" name="nome" placeholder="Seu nome" required /></div>
-              <div className="contact-field"><label htmlFor="contact-phone">Telefone</label><input id="contact-phone" name="telefone" inputMode="tel" placeholder="(00) 00000-0000" required /></div>
+              <div className="contact-field"><label htmlFor="contact-name">Nome</label><input id="contact-name" name="nome" autoComplete="name" placeholder="Seu nome" required /></div>
+              <div className="contact-field"><label htmlFor="contact-phone">Telefone</label><input id="contact-phone" name="telefone" type="tel" inputMode="tel" autoComplete="tel" placeholder="(00) 00000-0000" required /></div>
               <div className="contact-field full"><label htmlFor="contact-message">Mensagem</label><textarea id="contact-message" name="mensagem" rows="3" placeholder="Quero entender como funciona para minha unidade." required /></div>
               <button className="primary-button full-button" type="submit">Enviar mensagem para a AGEL <Icon name="arrow" size={18} /></button>
               <small>O envio abre seu aplicativo de e-mail com a mensagem pronta.</small>
