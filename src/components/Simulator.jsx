@@ -74,7 +74,9 @@ export default function Simulator() {
       setForm((current) => ({
         ...current,
         valorFatura: fields.valorFatura === null ? current.valorFatura : formatInputNumber(fields.valorFatura),
-        consumo: fields.consumo === null ? current.consumo : formatInputNumber(fields.consumo, 0),
+        consumo: fields.consumo === null
+          ? current.consumo
+          : formatInputNumber(fields.consumo, fields.mesesConsumo > 0 ? 2 : 0),
         tipoFornecimento: fields.tipoFornecimento ?? current.tipoFornecimento,
         tensaoNominal: fields.tensaoNominal === null ? current.tensaoNominal : formatInputNumber(fields.tensaoNominal, 0),
         adicionalBandeira: formatInputNumber(fields.adicionalBandeira ?? 0),
@@ -82,13 +84,16 @@ export default function Simulator() {
       }));
 
       const isHighVoltage = Number(fields.tensaoNominal) > 500;
+      const averageMessage = fields.mesesConsumo > 0
+        ? `Média calculada com ${fields.mesesConsumo} ${fields.mesesConsumo === 1 ? 'mês encontrado' : 'meses encontrados'} (${formatInputNumber(fields.consumoMedio)} kWh/mês). O fator do tipo de fornecimento será descontado no cálculo.`
+        : 'Dados encontrados! Confira os campos antes de calcular.';
       setPdfState({
         status: isHighVoltage ? 'ineligible' : fields.hasInjectedEnergy ? 'warning' : 'success',
         message: isHighVoltage
           ? 'Conta identificada como alta tensão. Esta unidade não pode ser associada à AGEL.'
           : fields.hasInjectedEnergy
             ? 'Esta conta já apresenta créditos de energia injetada. Os dados foram preenchidos, mas o resultado pode exigir análise da AGEL.'
-          : 'Dados encontrados! Confira os campos antes de calcular.',
+          : averageMessage,
         fileName: file.name,
         hasInjectedEnergy: fields.hasInjectedEnergy,
       });
@@ -187,7 +192,7 @@ export default function Simulator() {
                 <span className="pdf-icon"><Icon name="document" size={24} /></span>
                 <div>
                   <strong>Preencher com a conta em PDF</strong>
-                  <span>Valor, consumo, fornecimento, tensão e bandeira são buscados automaticamente.</span>
+                  <span>Além dos demais dados, calculamos a média dos meses de consumo disponíveis.</span>
                 </div>
               </div>
               <label className="upload-button">
@@ -224,7 +229,7 @@ export default function Simulator() {
               </div>
 
               <div className="field-group">
-                <label htmlFor="consumo">Consumo</label>
+                <label htmlFor="consumo">Consumo médio mensal</label>
                 <div className={`input-shell ${errors.consumo ? 'has-error' : ''}`}>
                   <input
                     id="consumo"
@@ -238,25 +243,6 @@ export default function Simulator() {
                   <span className="suffix">kWh</span>
                 </div>
                 <FieldError id="consumo-error">{errors.consumo}</FieldError>
-              </div>
-
-              <div className="field-group">
-                <label htmlFor="tipo-fornecimento">Tipo de fornecimento</label>
-                <div className={`input-shell select-shell ${errors.tipoFornecimento ? 'has-error' : ''}`}>
-                  <select
-                    id="tipo-fornecimento"
-                    value={form.tipoFornecimento}
-                    onChange={(e) => updateField('tipoFornecimento', e.target.value)}
-                    aria-describedby={errors.tipoFornecimento ? 'tipo-fornecimento-error' : undefined}
-                    aria-invalid={Boolean(errors.tipoFornecimento)}
-                  >
-                    <option value="">Selecione</option>
-                    <option>Monofásico</option>
-                    <option>Bifásico</option>
-                    <option>Trifásico</option>
-                  </select>
-                </div>
-                <FieldError id="tipo-fornecimento-error">{errors.tipoFornecimento}</FieldError>
               </div>
 
               <div className="field-group">
@@ -276,22 +262,43 @@ export default function Simulator() {
                 <FieldError id="adicional-bandeira-error">{errors.adicionalBandeira}</FieldError>
               </div>
 
-              <div className="field-group full-field">
-                <label htmlFor="tensao-nominal">Tensão nominal disponível</label>
-                <div className={`input-shell ${errors.tensaoNominal ? 'has-error' : ''}`}>
-                  <input
-                    id="tensao-nominal"
-                    value={form.tensaoNominal}
-                    onChange={(e) => updateField('tensaoNominal', e.target.value)}
-                    inputMode="decimal"
-                    placeholder="Ex.: 220"
-                    aria-describedby={errors.tensaoNominal ? 'tensao-nominal-error' : 'tensao-help'}
-                    aria-invalid={Boolean(errors.tensaoNominal)}
-                  />
-                  <span className="suffix">V</span>
+              <div className="paired-fields full-field">
+                <div className="field-group">
+                  <label htmlFor="tipo-fornecimento">Tipo de fornecimento</label>
+                  <div className={`input-shell select-shell ${errors.tipoFornecimento ? 'has-error' : ''}`}>
+                    <select
+                      id="tipo-fornecimento"
+                      value={form.tipoFornecimento}
+                      onChange={(e) => updateField('tipoFornecimento', e.target.value)}
+                      aria-describedby={errors.tipoFornecimento ? 'tipo-fornecimento-error' : undefined}
+                      aria-invalid={Boolean(errors.tipoFornecimento)}
+                    >
+                      <option value="">Selecione</option>
+                      <option>Monofásico</option>
+                      <option>Bifásico</option>
+                      <option>Trifásico</option>
+                    </select>
+                  </div>
+                  <FieldError id="tipo-fornecimento-error">{errors.tipoFornecimento}</FieldError>
                 </div>
-                <span className="field-help" id="tensao-help">Na conta RGE, procure por “Tensão nominal em volts — Disp.”</span>
-                <FieldError id="tensao-nominal-error">{errors.tensaoNominal}</FieldError>
+
+                <div className="field-group">
+                  <label htmlFor="tensao-nominal">Tensão disponível</label>
+                  <div className={`input-shell ${errors.tensaoNominal ? 'has-error' : ''}`}>
+                    <input
+                      id="tensao-nominal"
+                      value={form.tensaoNominal}
+                      onChange={(e) => updateField('tensaoNominal', e.target.value)}
+                      inputMode="decimal"
+                      placeholder="Ex.: 220"
+                      aria-describedby={errors.tensaoNominal ? 'tensao-nominal-error' : 'tensao-help'}
+                      aria-invalid={Boolean(errors.tensaoNominal)}
+                    />
+                    <span className="suffix">V</span>
+                  </div>
+                  <span className="field-help" id="tensao-help">Na conta RGE: “Tensão nominal em volts — Disp.”</span>
+                  <FieldError id="tensao-nominal-error">{errors.tensaoNominal}</FieldError>
+                </div>
               </div>
             </div>
 
@@ -319,7 +326,7 @@ export default function Simulator() {
             {form.rural && (
               <div className="inline-notice" role="status">
                 <Icon name="info" size={19} />
-                <span>Para unidades rurais, o cálculo usa a tarifa de energia de R$ 0,81 por kWh.</span>
+                <span>Para unidades rurais, o cálculo usa a tarifa de energia de R$ 0,80196 por kWh.</span>
               </div>
             )}
 
@@ -383,7 +390,7 @@ export default function Simulator() {
             </div>
 
             {result.rural && (
-              <div className="result-rural-note"><Icon name="info" size={18} /> Estimativa rural calculada com a tarifa de energia de R$ 0,81 por kWh.</div>
+              <div className="result-rural-note"><Icon name="info" size={18} /> Estimativa rural calculada com a tarifa de energia de R$ 0,80196 por kWh.</div>
             )}
 
             <button className="details-toggle" type="button" onClick={() => setShowDetails((value) => !value)} aria-expanded={showDetails}>

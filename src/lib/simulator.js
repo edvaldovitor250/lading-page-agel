@@ -98,7 +98,7 @@ export function simulateSavings({
     };
   }
 
-  const tarifaEnergia = rural ? 0.81 : 0.92;
+  const tarifaEnergia = rural ? 0.80196 : 0.92;
   const percentualBandeira = fatorFornecimento / consumo;
   const restituicaoBandeira = adicionalBandeira * (1 - percentualBandeira);
   const abatimentoEnergia = (consumo - fatorFornecimento) * tarifaEnergia;
