@@ -597,7 +597,7 @@ export default function App() {
               <div className="impact-brand"><img src="/assets/agel-logo-vertical.png" alt="AGEL" /></div>
               <div className="dashboard-head"><span>Impacto AGEL</span><i>Energia que transforma</i></div>
               <div className="dashboard-grid">
-                <div><strong>+900</strong><span>associados</span></div>
+                <div><strong>+1000</strong><span>associados</span></div>
                 <div><strong>+45</strong><span>usinas</span></div>
                 <div><strong>+315 t</strong><span>de CO₂ evitadas<br />equivalente a 31.500 árvores cultivadas</span></div>
                 <div><strong>+R$ 350 mil</strong><span>em descontos distribuídos</span></div>
