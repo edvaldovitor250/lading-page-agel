@@ -500,7 +500,7 @@ export default function App() {
 
         <section className="trust-strip" aria-label="Indicadores AGEL">
           <div className="container stats-grid">
-            <Stat value={900} suffix="+" label="associados" note="rede em crescimento" icon="people" />
+            <Stat value={1000} suffix="+" label="associados" note="rede em crescimento" icon="people" />
             <Stat value={45} suffix="+" label="usinas solares" note="geração compartilhada" icon="sun" delay={90} />
             <div className="stat-card text-stat" data-reveal="scale" style={{ transitionDelay: '180ms' }}>
               <span className="stat-icon"><Icon name="bolt" size={22} /></span>
